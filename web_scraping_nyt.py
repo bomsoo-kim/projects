@@ -24,7 +24,6 @@ def text_mining_step1():
 urls = text_mining_step1()
 
 #------------------------------------------------------------------
-
 def text_mining_step2(urls):
     links = []
     titles = []
