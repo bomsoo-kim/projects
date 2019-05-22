@@ -109,4 +109,10 @@ yyyymm, urls, titles = data_mining_step2(grp_urls) # it takes about 2 hours
 url_links, yyyymmdd, authors, titles, bodies = [], [], [], [], [] # initialize
 
 #---------------------------------------------------------------------------------
+# Sometimes, this part fails to retrieve data from the website. In this case, just run this part again.
+# This part is designed to resume the job from where it ended for any reason. 
 url_links, yyyymmdd, authors, titles, bodies = data_mining_step3(urls, url_links, yyyymmdd, authors, titles, bodies, START_INDEX = len(url_links))
+
+#---------------------------------------------------------------------------------
+df = pd.DataFrame({'url':url_links, 'date':yyyymmdd, 'author':authors, 'title':titles, 'body':bodies})
+df.to_csv('NYT_news_articles_%s-%s.csv'%(start_year, end_year), index = False)
