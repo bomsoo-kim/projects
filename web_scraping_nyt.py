@@ -60,13 +60,13 @@ def data_mining_step3(urls, url_links = [], yyyymmdd = [], authors = [], titles 
 #         print(soup.prettify())
 
         #---- url_link -----------------------------------
-        if len(re.findall(r'nytimes.com/(\d{4})/(\d{2})/(\d{2})/', url)) > 0:
+        if len(re.findall(r'/(\d{4})/(\d{2})/(\d{2})/', url)) > 0:
             url_links_0 = url
         else:
             url_links_0 = str(soup.html['itemid'])
 
         #---- date -----------------------------------
-        (y,m,d) = re.findall(r'nytimes.com/(\d{4})/(\d{2})/(\d{2})/', url_links_0)[0]
+        (y,m,d) = re.findall(r'/(\d{4})/(\d{2})/(\d{2})/', url_links_0)[0]
         yyyymmdd_0 = int(y+m+d)
 
         #---- author -----------------------------------
