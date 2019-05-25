@@ -114,5 +114,13 @@ url_links, yyyymmdd, authors, titles, bodies = [], [], [], [], [] # initialize
 url_links, yyyymmdd, authors, titles, bodies = data_mining_step3(urls, url_links, yyyymmdd, authors, titles, bodies, START_INDEX = len(url_links))
 
 #---------------------------------------------------------------------------------
+# The code below allows to skip an article by filling the lists with empty data
+# url_links.append('')
+# yyyymmdd.append('')
+# authors.append('')
+# titles.append('')
+# bodies.append('')
+
+#---------------------------------------------------------------------------------
 df = pd.DataFrame({'url':url_links, 'date':yyyymmdd, 'author':authors, 'title':titles, 'body':bodies})
 df.to_csv('NYT_news_articles_%s-%s.csv'%(start_year, end_year), index = False)
