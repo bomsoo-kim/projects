@@ -1,4 +1,4 @@
-# update 06/03/2019
+# update 06/05/2019
 
 import requests
 from bs4 import BeautifulSoup # https://www.crummy.com/software/BeautifulSoup/bs4/doc/#css-selectors
