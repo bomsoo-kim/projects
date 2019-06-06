@@ -8,6 +8,13 @@ import pandas as pd
 def most_frequent(List):  # https://www.geeksforgeeks.org/python-find-most-frequent-element-in-a-list/
     return max(set(List), key = List.count) 
 
+def most_frequent_list_of_list(ListofList):
+    # ex) ListofList = [['a','b'], ['a','b'], ['a','b'], ['c','d'], ['a','b'], [], [], []]
+    # ref) https://stackoverflow.com/questions/3724551/python-uniqueness-for-list-of-lists
+    SetofTuple = set(tuple(List) for List in ListofList) # unique tuples 
+    ListofList_unique = [list(Tuple) for Tuple in SetofTuple]
+    return max(ListofList_unique, key = ListofList.count) 
+
 def data_mining_step1(start_year = 1851, end_year = 2018):
     urls = []
     for y in range(start_year, end_year + 1): # NEED TO MODIFY
@@ -60,7 +67,7 @@ def data_mining_step3(urls, url_links = [], yyyymmdd = [], authors = [], titles 
         soup = BeautifulSoup(html.text, 'html.parser')
 #         print(soup.prettify())
         
-        if (soup.find('html') is not None) and (len(soup.find_all(name='meta', attrs={'name':'errorpage'})) == 0) and ('http://theater.nytimes.com/mem/theater/treview.html' not in url) and ('http://movies.nytimes.com/movie/review' not in url): 
+        if (soup.find('html') is not None) and (len(soup.find_all(name='meta', attrs={'name':'errorpage'})) == 0) and ('http://theater.nytimes.com/mem/theater/treview.html' not in url) and ('http://movies.nytimes.com/movie/review' not in url) and ('/dining/' not in url):
             #---- url_link -----------------------------------
             if len(re.findall(r'/(\d{4})/(\d{2})/(\d{2})/', url)) > 0:
                 url_links_0 = url
@@ -119,7 +126,7 @@ def data_mining_step3(urls, url_links = [], yyyymmdd = [], authors = [], titles 
             titles.append(titles_0)
             bodies.append(bodies_0)
         else:
-#             print('Nothing added because of one or more errors: ', url)
+            print('Nothing added because of one or more errors: ', url)
             url_links.append('')
             yyyymmdd.append('')
             authors.append('')
